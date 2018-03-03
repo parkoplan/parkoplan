@@ -50,13 +50,13 @@ var updateBusyLots = function() {
             if (lines[i]) {
                 var parts = lines[i].split(/ +/);
                 var lotId = parts[0];
-                var lotIsBusy = parts[1];
+                var lotIsFree = parts[1];
                 var lot = SVG.get("lot" + lotId);
                 if (lot) {
-                    if (lotIsBusy == 1) {
-                        lot.fill(BUSY_LOT_COLOR);
-                    } else {
+                    if (lotIsFree == 1) {
                         lot.fill(FREE_LOT_COLOR);
+                    } else {
+                        lot.fill(BUSY_LOT_COLOR);
                     }
                 }
             }
