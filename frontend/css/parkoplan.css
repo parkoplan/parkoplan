@@ -12,6 +12,7 @@
 }
 .mdl-layout-title {
     white-space: nowrap;
+    margin-top: 4px;
 }
 .mdl-layout-title a {
     color: white;
@@ -19,5 +20,4 @@
 }
 .mdl-layout-title img {
     /* margin-right: 10px; /* Uncomment if you decide to split logo and title */
-    padding-bottom: 4px;
 }
