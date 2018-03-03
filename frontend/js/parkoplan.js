@@ -1,5 +1,5 @@
 var BUSY_LOT_COLOR = 'black';
-var FREE_LOT_COLOR = 'gainsboro'
+var FREE_LOT_COLOR = 'gainsboro';
 
 var initParkingLots = function(parkingMap) {
     var parking = parkingMap.group();
@@ -61,7 +61,7 @@ var updateBusyLots = function() {
                 }
             }
         }
-    })
+    });
 }
 
 var parkingMap = SVG('parking-map');
