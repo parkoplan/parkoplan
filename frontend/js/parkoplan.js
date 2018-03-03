@@ -1,9 +1,9 @@
-// init parking
+var BUSY_LOT_COLOR = 'black';
+var FREE_LOT_COLOR = 'gainsboro'
 
-var parking = SVG('parking');
-parking.attr('preserveAspectRatio', 'xMidYMin meet');
+var initParkingLots = function(parkingMap) {
+    var parking = parkingMap.group();
 
-var initParkingLots = function() {
     // Loading SVG content into the current document.
     // Do not load it as image because we cannot change color of images that are separate documents.
     var carDef = parking.defs().group();
@@ -28,15 +28,16 @@ var initParkingLots = function() {
                 minY = Math.min(minY, lotY);
                 maxX = Math.max(maxX, lotX);
                 maxY = Math.max(maxY, lotY);
-                cars.push({x: lotX, y: lotY, r: lotR});
+                cars.push({id: lotId, x: lotX, y: lotY, r: lotR});
             }
         }
         maxX = maxX - minX + 100;
         maxY = maxY - minY + 100;
-        parking.attr('viewBox', "0 0 "  + maxX  + " " + maxY);
+        parkingMap.attr('viewBox', "0 0 "  + maxX  + " " + maxY);
+        parkingMap.attr('preserveAspectRatio', 'xMidYMin meet');
         for (var i = 0, count = cars.length; i < count; ++i) {
             var car = cars[i];
-            parking.use(carDef).id("lot" + lotId).move(car.x - minX, car.y - minY).rotate(car.r).style({fill: 'gainsboro'});
+            parking.use(carDef).id("lot" + car.id).move(car.x - minX, car.y - minY).rotate(car.r).fill(FREE_LOT_COLOR);
         }
     });
 }
@@ -49,16 +50,21 @@ var updateBusyLots = function() {
                 var parts = lines[i].split(/ +/);
                 var lotId = parts[0];
                 var lotIsBusy = parts[1];
-                if (lotIsBusy == 1) {
-                    var lot = parking.get(lotId);
-                    lot.style({fill: 'black'});
+                var lot = SVG.get("lot" + lotId);
+                if (lot) {
+                    if (lotIsBusy == 1) {
+                        lot.fill(BUSY_LOT_COLOR);
+                    } else {
+                        lot.fill(FREE_LOT_COLOR);
+                    }
                 }
             }
         }
     })
 }
 
-initParkingLots();
+var parkingMap = SVG('parking-map');
+initParkingLots(parkingMap);
 updateBusyLots();
 
 $(document).ready(function() {
