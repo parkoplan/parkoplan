@@ -1,5 +1,7 @@
 var BUSY_LOT_COLOR = 'black';
 var FREE_LOT_COLOR = 'gainsboro';
+var DATA_PATH = 'data-real';
+
 
 var initParkingLots = function(parkingMap) {
     var parking = parkingMap.group();
@@ -12,7 +14,7 @@ var initParkingLots = function(parkingMap) {
         carDef.svg(imageSvg.html()).rotate(90);
     }, 'xml');
 
-    $.get("data/parkinglot.txt", function(data) {
+    $.get(DATA_PATH + "/parkinglot_1.txt", function(data) {
         var lines = data.split(/\r?\n/);
         var cars = [];
         var minX = minY = Number.MAX_SAFE_INTEGER;
@@ -44,7 +46,7 @@ var initParkingLots = function(parkingMap) {
 }
 
 var updateBusyLots = function() {
-    $.get("data/parking.txt", function(data) {
+    $.get(DATA_PATH + "/parking.txt", function(data) {
         var lines = data.split(/\r?\n/);
         for (var i = 0, count = lines.length; i < count; ++i) {
             if (lines[i]) {
