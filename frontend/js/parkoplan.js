@@ -67,6 +67,7 @@ var updateBusyLots = function() {
 var parkingMap = SVG('parking-map');
 initParkingLots(parkingMap);
 updateBusyLots();
+setTimeout(updateBusyLots, 1000);
 
 $(document).ready(function() {
     $('.mdl-layout__drawer .mdl-navigation__link').click(function() {
