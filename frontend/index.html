@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkoplan</title>
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/parkoplan.css">
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Parkoplan</span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation parkoplan-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">Parking</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">About</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Parkoplan</span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="#">Parking</a>
+              <a class="mdl-navigation__link" href="#">About</a>
+              <a class="mdl-navigation__link" href="#">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-grid parkoplan-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div id="parking"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/svg.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/parkoplan.js"></script>
+</body>
+</html>

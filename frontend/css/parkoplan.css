@@ -1,0 +1,12 @@
+.parkoplan-grid {
+    max-width: 900px;
+}
+.parkoplan-navigation .mdl-navigation__link {
+    line-height: 56px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-bottom: 4px solid transparent;
+}
+.parkoplan-navigation .mdl-navigation__link:hover {
+    border-bottom: 4px solid white;
+}
