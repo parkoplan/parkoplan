@@ -33,6 +33,7 @@ var initParkingLots = function(parkingMap) {
         }
         maxX = maxX - minX + 100;
         maxY = maxY - minY + 100;
+        minX = minX - 100;
         parkingMap.attr('viewBox', "0 0 "  + maxX  + " " + maxY);
         parkingMap.attr('preserveAspectRatio', 'xMidYMin meet');
         for (var i = 0, count = cars.length; i < count; ++i) {
