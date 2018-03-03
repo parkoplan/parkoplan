@@ -10,3 +10,14 @@
 .parkoplan-navigation .mdl-navigation__link:hover {
     border-bottom: 4px solid white;
 }
+.mdl-layout-title {
+    white-space: nowrap;
+}
+.mdl-layout-title a {
+    color: white;
+    text-decoration: none;
+}
+.mdl-layout-title img {
+    /* margin-right: 10px; /* Uncomment if you decide to split logo and title */
+    padding-bottom: 4px;
+}
