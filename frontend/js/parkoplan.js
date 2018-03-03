@@ -2,6 +2,18 @@ var BUSY_LOT_COLOR = 'black';
 var FREE_LOT_COLOR = 'gainsboro';
 var DATA_PATH = 'data-real';
 
+function getCenterFromCorners(points) {
+    var sumX = sumY = 0;
+    var count = points.length;
+    for (var i = 0; i < count; ++i) {
+        sumX += points[i].x;
+        sumY += points[i].y;
+    }
+    return {
+        x: sumX / count,
+        y: sumY / count
+    }
+}
 
 var initParkingLots = function(parkingMap) {
     var parking = parkingMap.group();
@@ -26,6 +38,16 @@ var initParkingLots = function(parkingMap) {
                 var lotX = parts[9];
                 var lotY = parts[10];
                 var lotR = 360 - parts[11];
+                if (lotX == 0 && lotY == 0 && lotR == 360) {
+                    points = [];
+                    for (var j = 1; j <= 8; j += 2) {
+                        points.push({x: parseInt(parts[j], 10), y: parseInt(parts[j+1], 10)});
+                    }
+                    var center = getCenterFromCorners(points);
+                    lotX = center.x;
+                    lotY = center.y;
+                    lotR = 0;
+                }
                 minX = Math.min(minX, lotX);
                 minY = Math.min(minY, lotY);
                 maxX = Math.max(maxX, lotX);
