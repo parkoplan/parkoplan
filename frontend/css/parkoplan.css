@@ -1,5 +1,5 @@
 .parkoplan-grid {
-    max-width: 900px;
+    /* max-width: 900px; */
 }
 .parkoplan-navigation .mdl-navigation__link {
     line-height: 56px;
@@ -19,5 +19,5 @@
     text-decoration: none;
 }
 .mdl-layout-title img {
-    /* margin-right: 10px; /* Uncomment if you decide to split logo and title */
+    margin-right: 10px;
 }

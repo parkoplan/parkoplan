@@ -1,6 +1,9 @@
-var BUSY_LOT_COLOR = 'black';
-var FREE_LOT_COLOR = 'gainsboro';
-var DATA_PATH = 'data-real';
+var BUSY_LOT_COLOR = 'rgb(243,75,125)';
+var FREE_LOT_COLOR = 'lightgray';
+var DATA_PATH = 'data-test';
+
+// TODO: fix map positioning
+// TODO: gray rectangle for free lots
 
 function getCenterFromCorners(points) {
     var sumX = sumY = 0;
@@ -15,12 +18,32 @@ function getCenterFromCorners(points) {
     }
 }
 
+function getBoxCenter(box) {
+    return {
+        x: box.x + box.width / 2,
+        y: box.y + box.height / 2,
+    };
+}
+
+function centerObjectOnDrawing(object, drawing) {
+    var bc = getBoxCenter(drawing.viewbox());
+    var oc = getBoxCenter(object.rbox(drawing));
+    console.log(object.bbox());
+    console.log(object.height());
+    console.log(object.rbox(drawing));
+    object.move(bc.x - (oc.x - object.x), oc.y - (oc.y - object.y));
+}
+
 var initParkingLots = function(parkingMap) {
+    parkingMap.viewbox(0, 0, 640, 480);
+    // parkingMap.attr('preserveAspectRatio', 'xMidYMin meet');
+    // var background = parkingMap.image("img/map.png");
     var parking = parkingMap.group();
 
     // Loading SVG content into the current document.
     // Do not load it as image because we cannot change color of images that are separate documents.
     var carDef = parking.defs().group();
+    var lotDef = parking.defs().rect(50, 100).move(-75, 1).fill(FREE_LOT_COLOR);
     $.get("img/car.svg", function(data) {
         var imageSvg = $('svg', data);
         carDef.svg(imageSvg.html()).rotate(90);
@@ -58,12 +81,13 @@ var initParkingLots = function(parkingMap) {
         maxX = maxX - minX + 100;
         maxY = maxY - minY + 100;
         minX = minX - 100;
-        parkingMap.attr('viewBox', "0 0 "  + maxX  + " " + maxY);
-        parkingMap.attr('preserveAspectRatio', 'xMidYMin meet');
         for (var i = 0, count = cars.length; i < count; ++i) {
             var car = cars[i];
-            parking.use(carDef).id("lot" + car.id).move(car.x - minX, car.y - minY).rotate(car.r).fill(FREE_LOT_COLOR);
+            parking.use(lotDef).id("lot" + car.id).move(car.x - minX, car.y - minY).rotate(car.r).fill(FREE_LOT_COLOR).hide();
+            parking.use(carDef).id("car" + car.id).move(car.x - minX, car.y - minY).rotate(car.r).fill(BUSY_LOT_COLOR).hide();
         }
+        // parking.rotate(-37).scale(0.4, 0.4);
+        centerObjectOnDrawing(parking, parkingMap);
     });
 }
 
@@ -75,13 +99,14 @@ var updateBusyLots = function() {
                 var parts = lines[i].split(/ +/);
                 var lotId = parts[0];
                 var lotIsFree = parts[1];
+                var car = SVG.get("car" + lotId);
                 var lot = SVG.get("lot" + lotId);
-                if (lot) {
-                    if (lotIsFree == 1) {
-                        lot.fill(FREE_LOT_COLOR);
-                    } else {
-                        lot.fill(BUSY_LOT_COLOR);
-                    }
+                if (lotIsFree == 1) {
+                    car.hide();
+                    lot.show();
+                } else {
+                    car.show();
+                    lot.hide();
                 }
             }
         }
@@ -96,5 +121,10 @@ setInterval(updateBusyLots, 500);
 $(document).ready(function() {
     $('.mdl-layout__drawer .mdl-navigation__link').click(function() {
         var d = document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
+    });
+    $('.mdl-navigation__link').click(function() {
+        var targetId = $(this).attr('href');
+        $('#content-wrapper div').hide();
+        $(targetId).show();
     });
 });

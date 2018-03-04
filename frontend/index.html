@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,28 +19,50 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title"><a href=""><img src="img/parking-sign.svg" width="32" height="32">arkoplan</a></span>
+                <span class="mdl-layout-title"><a href=""><img src="img/parking-sign.svg" width="32" height="32">Parkoplan</a></span>
                 <div class="mdl-layout-spacer"></div>
                 <nav class="mdl-navigation parkoplan-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">Парковка</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">О сервисе</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#">О команде</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#parking-map">Парковка</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#parkoplan">О сервисе</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#team">О команде</a>
                 </nav>
             </div>
         </header>
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Parkoplan</span>
             <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" href="#">Парковка</a>
-              <a class="mdl-navigation__link" href="#">О сервисе</a>
-              <a class="mdl-navigation__link" href="#">О команде</a>
+              <a class="mdl-navigation__link" href="#parking-map">Парковка</a>
+              <a class="mdl-navigation__link" href="#parkoplan">О сервисе</a>
+              <a class="mdl-navigation__link" href="#team">О команде</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
             <div class="page-content">
                 <div class="mdl-grid parkoplan-grid">
-                    <div class="mdl-cell mdl-cell--12-col">
+                    <div id="content-wrapper" class="mdl-cell mdl-cell--12-col">
                         <div id="parking-map"></div>
+                        <div id="parkoplan" style="display: none">
+                            <h4>О сервисе</h4>
+                            <p>Сервис Parkoplan поможет вам найти свободное парковочное место на бесплатных парковках: около крупных супермаркетов, офисных центров, университетов.</p>
+                        </div>
+                        <div id="team" style="display: none">
+                            <h4>О команде</h4>
+                            <p>Команда Parkoplan:</p>
+                            <ul>
+                                <li>Владимир Фирсов &ndash; руководитель проекта, идея</li>
+                                <li>Михаил Пухликов &ndash; backend-разработка, идея</li>
+                                <li>Александр Кузнецов &ndash; backend-разработка, инфраструктура</li>
+                                <li>Николай Сухарев &ndash; обработка данных</li>
+                                <li>Владимир Жиров &ndash; frontend-разработка</li>
+                            </ul>
+                            <p>Благодарности:</p>
+                            <ul>
+                                <li><a href="https://github.com/eladj">Elad Joseph</a>, автору проекта <a href="https://github.com/eladj/detectParking">detectParking</a></li>
+                                <li><a href="https://thenounproject.com/search/?q=car%20top&i=20350">Andre Eisen</a>, автору графики под лицензией Creative Commons Attribution</li>
+                                <li><a href="http://www.freepik.com" title="Freepik">Freepik</a> и проекту <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, предоставившим графику под лицензией Creative Commons Attribution</li>
+                                <li>Google, разработчикам библиотеки <a href="https://getmdl.io">Material Design Light</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
